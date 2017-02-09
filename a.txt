@@ -1,3 +1,113 @@
-i am charlie
- test
- cake
+2015 IEEE Conference on Computer Communications (INFOCOM) 
+
+SMOC: A Secure Mobile Cloud Computing Platform 
+
+
+Zijiang Hao, Yutao Tang, Yifan Zhang. 
+, Ed Novak, Nancy Carter, Qun Li 
+{hebo, yytang, ejnovak, njcarter, liqun}@cs.wm.edu, .zhangy@binghamton.edu 
+College of William and Mary, Williamsburg, VA, USA 
+.State University of New York at Binghamton, Binghamton, NY, USA 
+
+
+Abstract¡XMobile devices are now ubiquitous in the modern 
+world. In this paper, we propose a novel and practical mobile-cloud 
+platform for smart mobile devices. Our platform allows users 
+to run the entire mobile device operating system and arbitrary 
+applications on a cloud-based virtual machine. It has two design 
+fundamentals. First, applications can freely migrate between the 
+user¡¦s mobile device and a backend cloud server. We design a file 
+system extension to enable this feature, so users can freely choose 
+to run their applications either in the cloud (for high security 
+guarantees), or on their local mobile device (for better user 
+experience). Second, in order to protect user data on the smart 
+mobile device, we leverage hardware virtualization technology, 
+which isolates the data from the local mobile device operating 
+system. We have implemented a prototype of our platform using 
+off-the-shelf hardware, and performed an extensive evaluation of 
+it. We show that our platform is efficient, practical, and secure. 
+
+I. INTRODUCTION 
+Smart mobile devices are gradually becoming the dominant 
+daily computing platform for many people [1], [2]. While many 
+applications today run directly on individual mobile devices, we 
+envision a mobile-cloud computing model emerging whereby 
+individual devices run user interface software with the bulk of 
+computation performed on a virtual machine (VM) running in 
+a commodity cloud hardware environment [3]. In this paper, 
+we aim to build a platform that supports free migration of apps 
+between smart mobile devices and cloud based hardware. 
+
+In the mobile-cloud model, user input on the mobile device 
+is transmitted to cloud processes running on the VM. Results 
+from cloud processing are transformed into display content and 
+then transmitted back to the mobile device. The mobile device 
+and the cloud VM share functionality to meet user needs. 
+By moving heavy computational processes from the mobile 
+device to the cloud VM, the mobile-cloud model improves 
+user response time and reduces device energy consumption. It 
+also has security advantages, e.g., sensitive data can be stored 
+in the cloud, safeguarded from a compromised mobile device 
+OS or app, and also protected from exposure to a thief. A 
+user could acquire a new smart mobile device, download the 
+interface software, and resume arbitrary tasks from before the 
+compromise or theft occurred. 
+
+There are already solutions for the mobile-cloud model in 
+recent literature. We believe, however, that our platform has 
+greater potential than what is immediately obvious and can 
+achieve more than what existing solutions can do. There are two 
+concepts underlying our platform that differentiate it. First, we 
+are proposing a resource sharing platform in the sense that an 
+app can freely change its executing location between the mobile 
+
+device and the cloud. In contrast, existing solutions only allow 
+apps to run in the cloud. Second, our platform provides security 
+guarantees even when the mobile device operating system has 
+been compromised, which is a feature that existing solutions 
+cannot offer. 
+
+We achieve the first concept by running a VM in the cloud 
+which has an execution environment compatible with that on 
+the smart mobile device. Our platform shares resources between 
+this cloud VM and the mobile device in both directions, i.e., 
+the mobile device shares its files and IO devices with the cloud 
+VM when the app is running in the cloud, and the cloud VM 
+shares its files with the mobile device when the app is running 
+on the mobile device. The cloud VM does not need to share 
+its (virtual) IO devices with the mobile device in the latter 
+case, because they are not involved in the app¡¦s execution.
+
+ Our system currently only supports offline migration, i.e., when an 
+app wants to change its executing location, our platform will 
+cease its execution if it is running, transfer all the related data 
+to the target location, and re-launch the app if necessary. We 
+leave online migration to future work. 
+
+Considering the first concept, our platform is clearly different 
+from most existing solutions, such as Chrome OS [4]. Like 
+many others, Chrome OS follows a client-server computing 
+model in which the cloud behaves as a server that hosts 
+apps, while the smart mobile device behaves as a client that 
+communicates with the cloud. This model fails to meet a wide 
+range of user needs, because it only allows apps to run in the 
+cloud. Our platform, on the other hand, is a resource sharing 
+platform, in which apps can run on both locations and can 
+freely change their executing location. 
+
+The second concept is achieved by leveraging the hardware 
+virtualization functionality on the smart mobile device. To 
+be more specific, we suppose that a hypervisor runs on the 
+smart mobile device, which hosts a guest OS. The guest OS 
+could be malicious, and may launch attacks on the apps that 
+it hosts. The apps may also be malicious, compromised, or 
+attacked by the guest OS. In any case, they may leak sensitive 
+information stored on the smart mobile device or input by the 
+user. However, we trust the hypervisor, because the hypervisor 
+is always much smaller than the guest OS, and can be fully 
+verified through formal verification or manual audit. Moreover, 
+the hypervisor is unlikely to install any third-party applications 
+or libraries, and thus gets rid of many potential risks. We also 
+trust the cloud, under the assumption that it is established by a 
+famous company with high concern for their reputation, such 
+as Amazon, Google, Apple, and Microsoft. These companies 
