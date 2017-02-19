@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
+import os
 import codecs
 import sys
 import time
@@ -11,7 +12,7 @@ readfile = open(filename, 'r')
 writefile = open("output.txt", 'w')
 paragraph_eng_list = ['']
 paragraph_ch_list = ['']
-driver = webdriver.PhantomJS(executable_path=r'E:\phantomjs-2.1.1-windows\bin\phantomjs')  # 開啟 PhantomJs 瀏覽器
+driver = webdriver.PhantomJS(executable_path=os.path.abspath(r'./phantomjs-2.1.1-windows/bin/phantomjs'))  # 開啟 PhantomJs 瀏覽器
 driver.set_page_load_timeout(30)
 
 
