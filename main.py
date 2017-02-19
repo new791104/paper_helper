@@ -14,7 +14,7 @@ paragraph_eng_list = ['']
 paragraph_ch_list = ['']
 driver = webdriver.PhantomJS(executable_path=os.path.abspath(r'./phantomjs-2.1.1-windows/bin/phantomjs'))  # 開啟 PhantomJs 瀏覽器
 driver.set_page_load_timeout(30)
-
+#test
 
 def translate2ch(paragraph_eng):  # 將段落翻譯成中文
     print("input: " + paragraph_eng)
