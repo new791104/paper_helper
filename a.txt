@@ -1,481 +1,589 @@
-A BigData Approach for Classification and 
-Prediction of Student Result Using MapReduce 
-
-Abstract¡X In recent years the amount of data stored in 
-educational database is growing rapidly. The stored database 
-contains hidden information which if used aids improvement of 
-student¡¦s performance and behaviour. In this paper predictive 
-modelling approach is used for extracting this hidden 
-information. Data is collected, a predictive model is formulated, 
-predictions are made, and the model is validated as additional 
-data becomes available. The predictive models will help the 
-instructor to understand how well or how poorly the students in 
-his/her class will perform, and hence the instructor can choose 
-proper pedagogical and instructional interventions to enhance 
-student learning outcomes. The implementation is done in 
-Hadoop framework with MapReduce and Revolutionary R 
-Enterprise RRE. 
-
-
+BioMedical Engineering and Informatics(CISP-BMEI 2016) Research of Location Fingerprint Based on Three-
+Dimensional Indoor Positioning System 
+Shan Liu, Jianping Chai 
+School of Information Engineering, Communication University of China 
+Beijing, China 
+Abstract¡XThis paper proposed a solution to the three-
+dimensional indoor positioning system based on location 
+fingerprint method. Especially, it proposed an automatic offline 
+collection method and realizes an off-line collection system, 
+including a collection server and a mobile collection application, 
+which can be used to collection the information of location 
+fingerprint conveniently, and also improve the efficiency of the off 
+line collection. Moreover, this paper studied the three-dimensional 
+positioning system based on the location fingerprint method, 
+which can obtain the indoor location information with a relative 
+high accuracy. In addition, the paper improves the algorithm 
+based on the location fingerprint, which improves the positioning 
+accuracy and optimizes the positioning performance. 
+Keywords¡Xindoor positioning; location fingerprint; three-
+dimensional; NNSS-AVG; RSS 
 I. INTRODUCTION 
-Education sector has a lot of data in the form of student 
-information. Application of computers on this data can extract 
-valuable information to provide quality education. Due to this 
-combination of education and computer (data mining), a new 
-research community is growing i.e. Educational Data Mining 
-(EDM). Educational data mining is concerned with mounting 
-methods to determine facts from data, especially unknown 
-knowledge-driven pattern from educational repository in order 
-to highlight the strength and weaknesses of the student [1]. 
-
-An educational institution needs to have an approximate 
-prior knowledge of enrolled students to predict their 
-performance in future academics. This helps them to identify 
-promising students and also provides them an opportunity to 
-pay attention to and improve those who would probably get 
-lower grades. There is no absolute scale for measuring 
-knowledge but examination score is one scale which shows 
-the performance indicator of students. Quality education is one 
-of the most promising responsibilities of any country to his 
-countrymen. Quality education does not mean high level of 
-knowledge produced. But it means that education is produced 
-to students in efficient manner so that they learn without any 
-problem. For this purpose quality education includes features 
-like: methodology of teaching, continuous evaluation, 
-categorization of student into similar type, so that students 
-have similar objectives, educational background etc. 
-
-In this paper class X student¡¦s data of Central Board of 
-Secondary Education in all over India is considered for input 
-dataset. Since it contains petabytes of student data, these 
-datasets are considered as big data. In big data concept the 
-traditional data mining algorithms are translated to Map 
-Reduce algorithms for running them on Hadoop clusters by 
-translating their data analytics logic to the Map Reduce job 
-which is to be run over Hadoop clusters. Hadoop clusters are 
-designed for storing and processing huge amount of data in a 
-distributed computing environment. MapReduce is one of the 
-major hadoop component for distributed data processing. 
-MapReduce programming model consists of two separate and 
-distinct tasks that Hadoop programs perform. The first is the 
-map job, which takes a set of data and converts it into another 
-set of data, where individual elements are broken down into 
-tuples (key/value pairs). The reduce job takes the output from 
-a map as input and combines those data tuples into a smaller 
-set of tuples. 
-
-The clustering method is used to identify academically at-
-risk students and categorize the students accordingly. Since 
-there are many algorithms for data clustering, the K-Means 
-method is used here. The multiple regression algorithm is used 
-for predicting student results. Both algorithms are translated 
-to MapReduce algorithms to run on hadoop clusters. In K-
-means clustering it consists of 2 parts Map and Reduce. The 
-map function performs the procedure of assigning each sample 
-to the closest center while the reduce function performs the 
-procedure of updating the new centers. In order to decrease the 
-cost of network communication, a combiner function is 
-developed to deal with partial combination of the intermediate 
-values with the same key within the same map task. The multiple linear regression mapreduce algorithm is applied on 
-student previous result data to build a predictive model. This 
-model can then predict the student final result in the form of 
-grade or marks. This will be helpful for teacher, student and 
-their parents to know in advance about student final predicted 
-result and will enable them to take preventive measure. 
-
-II. RELATED WORKS 
-There are many institutions that have made use of learning 
-analytics to improve student success and retention. Ourania 
-Petropoulou, Katerina Kasimatis, Ioannis Dimopoulos, and 
-Symeon Retalis, [6] designed LAe-R: A new learning 
-analytics tool in Moodle for assessing students¡¦ performance. 
-A challenging and demanding task for the teachers in e-
-learning environments is the assessment of students¡¦ 
-performance. Several learning management systems (LMS) 
-like Moodle offer several assessment tools such as quizzes, 
-scales, ¡§classic¡¨ rubrics, etc. Shreyas Kudale, Advait 
-Kulkarni, Asst. Prof. Leena A. Deshpande[8] suggest the use 
-of Hadoop Framework and the ET- L process for Hadoop for 
-performing predictions based on the datasets. 
-
-Beth Dietz-Uhler & Janet E. Hurn [5] define learning 
-analytics, how it has been used in educational institutions, 
-what learning analytics tools are available, and how faculty 
-can make use of data in their courses to monitor and predict 
-student performance. They also provide details of several 
-issues and concerns with the use of learning analytics in 
-higher education. Weizhong Zhao[7] designed Parallel K-
-Means Clustering Based on MapReduce for clustering , Data 
-clustering has been received considerable attention in many 
-applications, such as data mining, document retrieval, image 
-segmentation and pattern classification. In April of 2011, Clint 
-McElroy[2] designed a system for The Online Student Profile 
-Learning System: a Learner-Centered Approach to Learning 
-Analytics , idea is to take the proven technology-based 
-solution to addressing the retention and success of at-risk 
-students (the Online Student Profile system developed in 
-CPCC¡¦s 2003-08 ) and work with partner colleges to deploy 
-both the OSP and the related faculty and staff development 
-activities in order to improve retention and student success at 
-those colleges. 
-
-Learning analytics (LA) is a multi-disciplinary field 
-involving machine learning, artificial intelligence, information 
-retrieval, statistics, and visualization. LA is also a field in 
-which several related areas of research in TEL converge. 
-These include academic analytics, action research, educational 
-data mining, recommender systems, and personalized adaptive 
-learning. M.A. Chatti, A.L. Dyckhoff, U. Schroeder, and H[5]. 
-Thus review recent publications on LA and its related fields 
-and map them to the four dimensions of the reference model. 
-Furthermore, we identify various challenges and research 
-opportunities in the area of LA in relation to each dimension. 
-Kenneth Wottrich[7] propose a research in 2010 to 
-characterize and model the performance of MapReduce 
-applications on typical, scalable clusters based on fundamental 
-application data and processing metrics. He identified five 
-fundamental characteristics which define the performance of 
-
-MapReduce applications. Then he created five separate bench 
-mark tests, each designed to isolate and test a single 
-characteristic. The results of these benchmarks are helpful in 
-constructing a model for MapReduce applications. 
-
-Seyed Reza Pakize[6] make a study on A Comprehensive 
-View of Hadoop MapReduce Scheduling Algorithms which 
-helps researchers. There are three important scheduling issues 
-in MapReduce such as locality, synchronization and fairness. 
-The most common objective of scheduling algorithms is to 
-minimize the completion time of a parallel application and 
-also achieve to these issues. There are many algorithms to 
-solve this issue with different techniques and approaches. 
-Some of them get focus to improvement data locality and 
-some of them implements to provide Synchronization 
-processing. 
-
-III. PROPOSED SYSTEM 
-The main goal of this paper is to identify academically at-
-risk students and to develop a predictive model to predict 
-student academic performance in educational institutions, 
-which helps to predict their future results. Student academic 
-performance is affected by numerous factors. The scope of 
-this research is limited to the investigation of learning 
-progression on their academic performance. The proposed 
-system consists of two functionalities: 
-
-a) Identifying academically at-risk students 
-b) Prediction of student result 
-A. Identifying academically at-risk students 
-The data collected from different applications require 
-proper method of extracting knowledge from large repositories 
-for better decision making. This makes an extreme challenge 
-for institutions using traditional data management mechanism 
-to store and process huge datasets. So it is required to define a 
-new paradigm called ¡§Big Data Analytics¡¨ to re-evaluate 
-current system and to manage and process huge data. We 
-implement a component of Big Data Analytics known as 
-¡§Learning Analytics¡¨. Learning analytics ( LA) refers to the 
-interpretation of a wide range of data produced by and 
-gathered on behalf of students in order to assess academic 
-progress, predict future performance, and spot potential issues. 
-Fig.1 shows the steps for identifying academically at-risk 
-students using LA. 
+With the development of wireless network and mobile 
+technology, people tent to use location based service to get 
+access on location information. Location information service has 
+been brought into many fields such as big data, cloud computing, 
+Internet of things, O2O and other new technologies and new 
+applications [1-3]. 
+WLAN positioning technology includes Received Signal 
+Strength (RSS) [4,5], Angle of Arrival (AOA) [6,7] and Time of 
+Arrival (TOA) [8,9]. The special hardware equipment is 
+required in AOA and TOA positioning technology, which is 
+used for precise measurement and synchronization of angle and 
+time. Compared with AOA and TOA, the RSS does not require 
+additional special equipment and has the following advantages: 
+(1) Fully based on the existing network infrastructure and 
+mobile terminals, no additional equipment is required; 
+(2) High positioning accuracy within several meters; 
+(3) The positioning delay is very small, and does not need to 
+search the satellite at the first time. 
+The RSS still can be divided into two kinds of positioning 
+technologies: location fingerprint method and communication 
+model method [10-12]. These two methods are different in the 
+way that the RSS value of the wireless signal combined with the 
+position information. Because the accuracy of the 
+communication model method is lower and the adaptability to 
+the environment is poorer, the location fingerprint method in the 
+indoor positioning technology is generally preferred. The 
+positioning technology based on location fingerprint can provide 
+less delay of indoor positioning and higher precision. 
+However, the location fingerprint technology is not mature, 
+and there is no large-scale commercial use in the market. The 
+most important reason is that the location fingerprint technology 
+is required to collect the location fingerprint information, and the 
+work is time-consuming compare with the benefit. Furthermore, 
+the two-dimensional spatial positioning cannot meet the needs 
+of location services in many cases and the height of the object 
+and the personnel information is becoming more important. For 
+example, in the event of a fire alarm and other disasters, we need 
+to determine the height, which will impact the rescue effect. 
+In addition, LBS have been widely used in some areas such 
+as public security and cultural exhibition. In an exhibition or a 
+shopping mall, the display may also be placed in different 
+heights. Although the height information is so important, there 
+is still no one successfully to carry on the three-dimensional 
+space positioning research using location fingerprint 
+technology, which is because the three-dimensional space of the 
+offline fingerprint collection is more than two-dimensional 
+space. 
+In this paper, we present a new type of deterministic 
+algorithm named NNSS-AP-AVG based on the NNSS-AVG 
+algorithm, which has better performance on the indoor 
+positioning technology based on the location fingerprint method, 
+especially for three-dimensions. 
+II. SYSTEM ARCHITECTURE 
+The principle of location fingerprint method is that the 
+characteristics of the RSS signal received in different physical 
+locations are unique and distinguishable. According to this 
+feature, we can construct a database, which is used to map the 
+physical location to the received RSS signal characteristics. 
+When we know the characteristics of the received RSS signal, 
+we can also get the physical location of the RSS signal. 
+Indoor positioning based on location fingerprint consists of 
+two stages: offline collection stage and online positioning stage. 
+The main purpose of the offline collection stage is to build the 
+location fingerprint database and the main purpose of online 
+positioning stage is to estimate the location of the target in the 
+test environment. 
+The database of fingerprint locations will be set up in the 
+offline acquisition phase, which relating the position 
+information and the RSS vectors. The RSS vector consists of 
+Research of Location Fingerprint Based on Three-
+Dimensional Indoor Positioning System 
+Shan Liu, Jianping Chai 
+School of Information Engineering, Communication University of China 
+Beijing, China 
+Abstract¡XThis paper proposed a solution to the three-
+dimensional indoor positioning system based on location 
+fingerprint method. Especially, it proposed an automatic offline 
+collection method and realizes an off-line collection system, 
+including a collection server and a mobile collection application, 
+which can be used to collection the information of location 
+fingerprint conveniently, and also improve the efficiency of the off 
+line collection. Moreover, this paper studied the three-dimensional 
+positioning system based on the location fingerprint method, 
+which can obtain the indoor location information with a relative 
+high accuracy. In addition, the paper improves the algorithm 
+based on the location fingerprint, which improves the positioning 
+accuracy and optimizes the positioning performance. 
+Keywords¡Xindoor positioning; location fingerprint; three-
+dimensional; NNSS-AVG; RSS 
+I. INTRODUCTION 
+With the development of wireless network and mobile 
+technology, people tent to use location based service to get 
+access on location information. Location information service has 
+been brought into many fields such as big data, cloud computing, 
+Internet of things, O2O and other new technologies and new 
+applications [1-3]. 
+WLAN positioning technology includes Received Signal 
+Strength (RSS) [4,5], Angle of Arrival (AOA) [6,7] and Time of 
+Arrival (TOA) [8,9]. The special hardware equipment is 
+required in AOA and TOA positioning technology, which is 
+used for precise measurement and synchronization of angle and 
+time. Compared with AOA and TOA, the RSS does not require 
+additional special equipment and has the following advantages: 
+(1) Fully based on the existing network infrastructure and 
+mobile terminals, no additional equipment is required; 
+(2) High positioning accuracy within several meters; 
+(3) The positioning delay is very small, and does not need to 
+search the satellite at the first time. 
+The RSS still can be divided into two kinds of positioning 
+technologies: location fingerprint method and communication 
+model method [10-12]. These two methods are different in the 
+way that the RSS value of the wireless signal combined with the 
+position information. Because the accuracy of the 
+communication model method is lower and the adaptability to 
+the environment is poorer, the location fingerprint method in the 
+indoor positioning technology is generally preferred. The 
+positioning technology based on location fingerprint can provide 
+less delay of indoor positioning and higher precision. 
+However, the location fingerprint technology is not mature, 
+and there is no large-scale commercial use in the market. The 
+most important reason is that the location fingerprint technology 
+is required to collect the location fingerprint information, and the 
+work is time-consuming compare with the benefit. Furthermore, 
+the two-dimensional spatial positioning cannot meet the needs 
+of location services in many cases and the height of the object 
+and the personnel information is becoming more important. For 
+example, in the event of a fire alarm and other disasters, we need 
+to determine the height, which will impact the rescue effect. 
+In addition, LBS have been widely used in some areas such 
+as public security and cultural exhibition. In an exhibition or a 
+shopping mall, the display may also be placed in different 
+heights. Although the height information is so important, there 
+is still no one successfully to carry on the three-dimensional 
+space positioning research using location fingerprint 
+technology, which is because the three-dimensional space of the 
+offline fingerprint collection is more than two-dimensional 
+space. 
+In this paper, we present a new type of deterministic 
+algorithm named NNSS-AP-AVG based on the NNSS-AVG 
+algorithm, which has better performance on the indoor 
+positioning technology based on the location fingerprint method, 
+especially for three-dimensions. 
+II. SYSTEM ARCHITECTURE 
+The principle of location fingerprint method is that the 
+characteristics of the RSS signal received in different physical 
+locations are unique and distinguishable. According to this 
+feature, we can construct a database, which is used to map the 
+physical location to the received RSS signal characteristics. 
+When we know the characteristics of the received RSS signal, 
+we can also get the physical location of the RSS signal. 
+Indoor positioning based on location fingerprint consists of 
+two stages: offline collection stage and online positioning stage. 
+The main purpose of the offline collection stage is to build the 
+location fingerprint database and the main purpose of online 
+positioning stage is to estimate the location of the target in the 
+test environment. 
+The database of fingerprint locations will be set up in the 
+offline acquisition phase, which relating the position 
+information and the RSS vectors. The RSS vector consists of 
 
-The first step in any LA effort is to collect data from 
-various educational environments and systems. This step is 
-critical to the successful discovery of useful patterns from the 
-data. The dataset is collected from various CBSE schools in all 
-over India and is available in SQL format in MySQL Server. 
-Since it contains petabytes of student data, these datasets are 
-considered as Big Data. Hadoop framework can be used for 
-cost effective and faster big data processing, which would 
-enhance the analysing process.Hadoop is an open-source 
-software framework for storing data and running applications 
-on clusters of commodity hardware,it provides massive 
-storage for data, and enormous processing power.Hadoop is 
-composed of four core components¡XHadoop Common, 
-Hadoop Distributed File System (HDFS), MapReduce and 
-YARN. 
-
-Map Reduce is a framework for writing applications that 
-process large amounts of structured and unstructured data in 
-parallel across a cluster of thousands of machines, in a 
-reliable, fault-tolerant manner. Similarly HDFS is a file 
-system that provides reliable data storage and access across all 
-the nodes in a Hadoop cluster. It links together the file systems 
-on many local nodes to create a single file system.The datasets 
-need to be formatted and uploaded to Hadoop Distributed 
-File System (HDFS) and used further by various nodes with 
-Mappers and Reducers in Hadoop clusters. The datasets are 
-uploaded to Hortonworks Data Platform (HDP) for analysis, 
-using a tool SQOOP (hadoop echo system project). Sqoop is a 
-tool designed to transfer data between Hadoop and relational 
-database servers. It is used to import data from relational 
-databases such as MySQL, Oracle to Hadoop HDFS, and 
-export from Hadoop file system to relational databases. 
-
-Data pre-processing also allows transforming the data into 
-a suitable format that can be used as input for a particular LA 
-method. Several data pre-processing tasks, borrowed from the 
-data mining field, can be used in this step. These include data 
-cleaning, data integration, data transformation, data reduction, 
-data modelling, user and session identification, and path 
-completion. The datasets are managed and pre-processed by 
-Apache Hive. Hive provides a warehouse structure and SQL 
-like access for data in HDFS and other hadoop input sources. 
-The data in required format is available in HDFS by the use of 
-Sqoop. These data is cleaned and integrated by HiveQl 
-language provided by Hive. Pre-processing is used to perform 
-data operation to translate data into a fixed data format before 
-providing data to algorithms or tools. The data analytics 
-process will then be initiated with this formatted data as the 
-input. 
-
-After data is available in the required format for data 
-analytics algorithms, data analytics operations will be 
-performed. The data analytics operations are performed 
-for discovering meaningful information from data to take 
-better decisions towards performance with data mining 
-concepts. It may either use descriptive or predictive analytics 
-for student¡¦s performance evaluations. Analytics can be 
-performed with various machine learning as well as 
-custom algorithmic concepts, such as regression, 
-classification, clustering, and model-based 
-recommendation. For Big Data, the same 
-
-algorithms can be translated to MapReduce algorithms for 
-running them on Hadoop clusters by translating their data 
-analytics logic to the MapReduce job which is to be run over 
-Hadoop clusters. MapReduce is the processing framework for 
-Apache Hadoop. MapReduce helps programming solve data 
-parallel problems for which data set can be sub-divided into 
-small parts and processed independently. The system splits the 
-input data into multiple chunks, each of which is assigned a 
-map task that can process the data in parallel. Each map task 
-reads the input as a set of (key, value) pairs and produces a 
-transformed set of (key, value) pairs as the output. The 
-framework shuffles and sorts outputs of the map tasks, 
-sending the intermediate (key, value) pairs to reduce task, 
-which groups them into final results. 
-
-Parallel K-Means Algorithm Based on MapReduce 
-
-The input dataset is stored on HDFS as a sequence file of 
-<key, value> pairs, each of which represents a record in the 
-dataset. The key is the offset in bytes of this record to the start 
-point of the data file, and the value is a string of the content of 
-this record. The dataset is split and globally broadcast to all 
-mappers. Consequently, the distance computations are parallel 
-executed. For each map task, PK-Means construct a global 
-variant centres which is an array containing the information 
-about centres of the clusters. Given the information, a mapper 
-can compute the closest center point for each sample. 
-
-Algorithm MAP (key,value) 
-
-Input: Global variable centers, the offset key, the sample 
-value 
-Output: <key¡¦, value¡¦> pair, where the key¡¦ is the index of 
-the closest center point and value¡¦ is a string comprise of 
-sample information 
-
-1. Construct the sample instance from value; 
-2. mindist = Double.maxvalue; 
-3. index = -1; 
-4. For i=0 to centers.length do 
-dist= ComputeDist(instance, centers[i]); 
-If dist < mindist { 
-mindist = dist; 
-index = i; 
-} 
-5. End For 
-6. Take index as key¡¦; 
-7. Construct value¡¦ as a string comprise of the values of 
-different dimensions; 
-8. output < key, value> pair; 
-9. End 
-147
+ 1124 
+Figure 1. The diagram of fingerprint positioning workflow 
+signal intensity received by all Aps, which we call it the location 
+fingerprint. In the offline acquisition phase, the user first selects 
+a number of reference points in the environment to be tested, 
+and then recorded the entire wireless signal intensities of 
+reference points received by Aps. When all the positions of the 
+fingerprints stored in the database, the construction of the 
+location fingerprint database is completed. 
+The location will be estimated in the online positioning stage, 
+where the user estimated the position using the signal intensity 
+received from each APs. The location fingerprint algorithm is 
+calculated to estimate the position to be measured. The position 
+can be measured both in the three-dimensional space and two-
+dimensional space. In this paper, the position of the location 
+fingerprint means the space coordinates. The diagram of 
+fingerprint positioning workflow is shown as Fig.1. 
+A. NNSS 
+The Nearest Neighbor(s) in Signal Space (NNSS) is the most 
+classical deterministic positioning algorithm, which is proposed 
+by RADAR system. 
+The location fingerprint positioning system is based on the 
+NNSS algorithm, which will be calculated by the following 
+Euclidean distance equation: 
+d=..£U(.........).......... (1) 
+Where the parameter F is location fingerprint data measured 
+in the online position stage and parameter S is the location 
+fingerprint data settled from the location fingerprint database in 
+the offline acquisition phase. 
+The location of the fingerprint data is determined as the 
+minimum of the Euclidean distance. This paper presents an 
+improved algorithm named NNSS Adjustable Parameter 
+Average (NNSS-AVG) based on NNSS. 
+B. NNSS-AVG 
+The algorithm of NNSS-AVG, which is also designed by the 
+developers of RADAR system, is applied to the RADAR-2 
+system. The NNSS-AVG is calculated as the mean of the first 
+kn minimum of the Euclidean distance, which determined from 
+the location fingerprint data measured in the online position 
+stage and location fingerprint data settled from the location 
+fingerprint database in the offline acquisition phase. 
+C. NNSS-AP-AVG 
+The algorithm of NNSS-AP-AVG is improved from 
+NNSS-AVG and can be implemented as the following steps: 
+(1) Calculate and order the Euclidean distance of the location 
+fingerprint data to be measured and the location fingerprint data 
+in the database; 
+(2) Select Q location fingerprint data that less than M times 
+the minimum Euclidean distance; 
+(3) Compared Q with kn of the initial input, and select the 
+smaller one as P; 
+(4) Calculated the weighted average of the P location 
+fingerprint data with smaller Euclidean distance, where the 
+weighted average parameters are the normalized Euclidean 
+distance. 
+There are two main improvements of NNSS-AP-AVG 
+compared with NNSS-AVG: 
+(1) The fixed kn is modified to a small number between kn 
+and Q, which is called P, and the Q is the number of location 
+Figure 1. The diagram of fingerprint positioning workflow 
+signal intensity received by all Aps, which we call it the location 
+fingerprint. In the offline acquisition phase, the user first selects 
+a number of reference points in the environment to be tested, 
+and then recorded the entire wireless signal intensities of 
+reference points received by Aps. When all the positions of the 
+fingerprints stored in the database, the construction of the 
+location fingerprint database is completed. 
+The location will be estimated in the online positioning stage, 
+where the user estimated the position using the signal intensity 
+received from each APs. The location fingerprint algorithm is 
+calculated to estimate the position to be measured. The position 
+can be measured both in the three-dimensional space and two-
+dimensional space. In this paper, the position of the location 
+fingerprint means the space coordinates. The diagram of 
+fingerprint positioning workflow is shown as Fig.1. 
+A. NNSS 
+The Nearest Neighbor(s) in Signal Space (NNSS) is the most 
+classical deterministic positioning algorithm, which is proposed 
+by RADAR system. 
+The location fingerprint positioning system is based on the 
+NNSS algorithm, which will be calculated by the following 
+Euclidean distance equation: 
+d=..£U(.........).......... (1) 
+Where the parameter F is location fingerprint data measured 
+in the online position stage and parameter S is the location 
+fingerprint data settled from the location fingerprint database in 
+the offline acquisition phase. 
+The location of the fingerprint data is determined as the 
+minimum of the Euclidean distance. This paper presents an 
+improved algorithm named NNSS Adjustable Parameter 
+Average (NNSS-AVG) based on NNSS. 
+B. NNSS-AVG 
+The algorithm of NNSS-AVG, which is also designed by the 
+developers of RADAR system, is applied to the RADAR-2 
+system. The NNSS-AVG is calculated as the mean of the first 
+kn minimum of the Euclidean distance, which determined from 
+the location fingerprint data measured in the online position 
+stage and location fingerprint data settled from the location 
+fingerprint database in the offline acquisition phase. 
+C. NNSS-AP-AVG 
+The algorithm of NNSS-AP-AVG is improved from 
+NNSS-AVG and can be implemented as the following steps: 
+(1) Calculate and order the Euclidean distance of the location 
+fingerprint data to be measured and the location fingerprint data 
+in the database; 
+(2) Select Q location fingerprint data that less than M times 
+the minimum Euclidean distance; 
+(3) Compared Q with kn of the initial input, and select the 
+smaller one as P; 
+(4) Calculated the weighted average of the P location 
+fingerprint data with smaller Euclidean distance, where the 
+weighted average parameters are the normalized Euclidean 
+distance. 
+There are two main improvements of NNSS-AP-AVG 
+compared with NNSS-AVG: 
+(1) The fixed kn is modified to a small number between kn 
+and Q, which is called P, and the Q is the number of location 
 
-Algorithm REDUCE (key, V) 
-
-Input: key is the index of the cluster, V is the list of the partial 
-sums from different host 
-Output: < key , value> pair, where the key¡¦ is the index of the 
-cluster, value¡¦ is a string representing the new center 
-
-1. 
-Initialize one array record the sum of value of each 
-dimensions of the samples contained in the same cluster, 
-e.g.the samples in the list V; 
-2. 
-Initialize a counter NUM as 0 to record the sum of sample 
-number in the same cluster; 
-3. while(V.hasNext()) 
-{ 
-Construct the sample instance from V.next(); 
-Add the values of different dimensions of instance to 
-the array 
-NUM += num; 
-} 
-
-4. Divide the entries of the array by NUM to get the new 
-center¡¦s coordinates; 
-6. Take key as key¡¦; 
-7. 
-Construct value¡¦ as a string comprise of the center¡¦s 
-coordinates; 
-8. 
-output < key, value> pair; 
-9. End 
-The final stage of the process consists of visualization of 
-the results of data analytics. Visualization is an interactive 
-way to represent the data insights. This can be done with 
-various data visualization software¡¦s like Gephi etc. Gephi is 
-an open-source network analysis and visualization software 
-package written in Java on the NetBeans platform, initially 
-developed by students of the University of Technology of 
-Compiegne (UTC) in France. 
-
-The resulted output of parallel K-Means clustering 
-algorithm in hadoop is in binary format. To understand the 
-result in human readable format we need to convert the binary 
-format into .txt or GraphML, for this we use Clusterdump tool 
-in Mahout. Mahout is the datamining library of Apache 
-Hadoop. The resulted output in GraphML can directly open in 
-Gephi and it will result the statistical analysis. By using 
-algorithms such as modularity, Fruchterman Reingold we can 
-analyse the result and partition them into groups based on the 
-result of clustering algorithm. 
-
-B. Prediction of student result 
-The prediction of students' result is crucial for educational 
-institutions, because the quality of teaching process is the 
-ability to meet students' needs. Analysing the past 
-performance of these students would provide a better 
-perspective of the probable academic performance of students 
-in the future. This can very well be achieved using the concept 
-of Predictive Analytics. Predictive analytics encompasses a 
-variety of statistical techniques from modelling, machine 
-learning, and data mining that analyze current and historical 
-facts to make predictions about future. 
-
-
-Fig 2. Steps for prediction 
-
-The above figure shows the steps for predicting student 
-results. The first step is to collect the dataset for prediction. 
-The dataset is divided into two sets ¡V one for training data 
-(training set) and other for test data (test set). The statistics is 
-done on the training dataset and a predictive model is 
-developed using the training dataset. The training and test 
-datasets are uploaded to Hortonworks Data Platform (HDP) 
-for analysis, using a tool called SQOOP. Sqoop is a tool 
-designed to transfer data between Hadoop and relational 
-database servers. It is used to import data from relational 
-databases such as MySQL, Oracle to Hadoop HDFS, and 
-export from Hadoop file system to relational databases. 
-
-Data Analysis phase is done in Hortonworks Sandbox. 
-This phase includes data cleaning, data formatting, data 
-subsetting etc. The Hortonworks Sandbox is a single node 
-implementation of the Hortonworks Data Platform (HDP). In 
-this phase only the appropriate variables for student¡¦s 
-performance evaluation are extracted from the input dataset 
-using the Map Reduce paradigm. The hortonworks sandbox 
-provides a component called Hive, which is used for 
-extracting meaningful data from dataset. The Hive supports a 
-query format, HiveQL which is same as that of SQL, but 
-processing is done based on map reduce programming model. 
-
-The last three phases are implemented in RRE. Revolution 
-R Enterprise for Windows is an enhanced, supported version 
-of the open source R language. It includes RevoScaleR, 
-Revolution¡¦s package for statistical analysis of large data sets. 
-RevoScaleR provides functions for performing scalable and 
-extremely high performance data management, analysis, and 
-visualization. The data manipulation and analysis functions in 
-RevoScaleR are appropriate for small and large datasets, but 
-are particularly useful in three common situations: 1) to 
-analyze data sets that are too big to fit in memory and, 2) to 
-perform computations distributed over several cores, 
-processors, or nodes in a cluster, or 3) to create scalable data 
-analysis routines that can be developed locally with smaller 
-data sets. RevoScaleR provides a new data file type with 
-extension .xdf that has been optimized for ¡§data chunking¡¨, 
-accessing parts of an Xdf file for independent processing. Xdf 
-files store data in a binary format. Methods for accessing these 
-files may use either horizontal (rows) or vertical (columns) 
-block partitioning. The file format provides very fast access to 
-a specified set of rows for a specified set of columns. 
-
-Multiple Linear Regression algorithm is used to identify 
-relationship between dependent and independent variables in 
-training dataset. Once the relationships between dependent 
-and independent variables are found, then a linear regression 
-model is created. The model is of the form 
-
-Y = £]0 + £]1X1 + £]2X2 + £]3X3 +........ 
-
-
-Where Y is the predicted value, £]0, £]1, £]2, £]3 are 
-regression coefficients and X1, X2, X3 are dependent 
-variables. 
-
-Once the model is created, test dataset is only needed to 
-apply in this linear regression model to generate predicted 
-value. In this project we have taken four test marks (GP1, 
-GP2, GP3 and GP4) of each student as training dataset, they 
-are used to generate linear regression model equation. GP4 is 
-taken as independent variable and GP1, GP2 and GP3 as 
-dependent variable. Using multiple linear regression algorithm 
-found relationship between GP4 against GP1, GP2 and GP3. 
-Using this relationship a new predictive model is created. The 
-test dataset contains only three marks GP1, GP2 and GP3. 
-Applying these dependent variables to the regression equation 
-to find out the predicted value GP4. 
-
-IV. EXPERIMENTAL RESULTS 
-The clustered output of the training dataset is given in the 
-fig. 3. It consists of 6 clusters which contain all the dataset and 
-partitioned them into different clusters. 
-
-The figure 4 shows input training dataset, using which the 
-predictive model is built. The training dataset contains 
-information like school code (sch), roll number (rroll) of each 
-student, name (cname, mname, fname), sex and marks for 4 
-tests (gp1, gp2, gp3, gp4). In this training dataset the variable 
-gp4 is taken as dependent variable and gp1, gp2 and gp3 are 
-taken as independent variables. Around 150000 student 
-records are taken in training dataset. 
+ 1125 
+Figure 2. The layout of reference points in the 3D testing enviorment 
+fingerprints where the Euclidean distance is less than M times 
+the minimum Euclidean distance. 
+(2) The estimate average is modified as a weighted average. 
+The first point of the improvement is that we try to prevent 
+the kn fixation caused by the non-similar locations to participate 
+in the estimation, which is because if the number of the 
+estimated locations is fixed, and if not enough number of the 
+similar locations join in the calculation, there will result in a 
+larger estimation error. Secondly, the purpose of the comparison 
+between kn and Q is to prevent the Q value to become too large 
+which will involve too much locations to participate in the 
+estimate. If the Q value is too large, then the estimated location 
+will not similar. Thus, we use the threshold of kn to limit the 
+number of participants in the estimates. 
+The second point of the improvement is that we try to 
+increase the weight of the similar location fingerprints, that is, 
+the estimated location is more close to the location of the 
+fingerprint, which is more accurate. The weighted NNSS-AVG 
+algorithm also uses this method. 
+III. SYSTEM SOLUTION 
+A. Clustering Analysis 
+In the location fingerprint method, we need to search and 
+compare for the location fingerprints data among the whole 
+fingerprint database, which is a large and complex computation. 
+In order to reduce the computation complexity, we introduce a 
+clustering method in the location fingerprint method. 
+Clustering analysis is a multivariate statistical method used 
+in pattern recognition, machine learning, data mining, image 
+processing, etc. Clustering analysis can be divided into 
+hierarchical clustering and non-hierarchical clustering. For 
+hierarchical clustering, the key is to define the class distance. 
+For non-hierarchical clustering, which is referred to a kind of 
+clustering methods, the common feature is to give an immature 
+initial classification, and revise it repeatedly according to some 
+certain rules until the classification become reasonable. 
+Compared with hierarchical clustering, the non-hierarchical 
+clustering method has better classification accuracy, and 
+occupies less system resources. In this paper, we choose the 
+classical K-means method in non-hierarchical clustering 
+method. 
+The clustering analysis steps are shown as follows: 
+(1) Set km which is the number of clusters; 
+(2) Random category the fingerprint data to be measured and 
+the location fingerprint data in the database into km classes. 
+(3) Calculate the center of gravity as a cluster center; 
+(4) Calculate the distance between each location fingerprint 
+data and the center of each cluster, and place the location 
+fingerprint data into a class that is represented by the nearest 
+cluster center. Recalculate the center of gravity as a new cluster 
+center; 
+(5) Repeat step (4) until the resulting classification is no 
+longer changed. 
+B. 3D NNSS-AP-AVG Positioning Algorithm 
+In order to realize the 3D positioning system based on 
+location fingerprint, we choose a three-dimensional space of 12 
+meters long, 1.6 meters wide and 2 meters high as an experiment 
+environment, as shown in Fig. 2. 
+We choose the reference points in every 0.8 meters, which is 
+highlightened in the color of blue. And the height of the 
+reference points was selected as 0.4 meters, 1.2 meters, 2 meters, 
+respectively. We use our own automatic acquisition application 
+named CUCFC instead of inSSIDer to collect the location 
+fingerprint data. We use CUCFC to collect 30 location 
+fingerprint data at each reference point. We set up the position 
+to be measured at each reference point of 1.2 meters high, and a 
+total of 28 to be measured with the red color. We also have used 
+Figure 2. The layout of reference points in the 3D testing enviorment 
+fingerprints where the Euclidean distance is less than M times 
+the minimum Euclidean distance. 
+(2) The estimate average is modified as a weighted average. 
+The first point of the improvement is that we try to prevent 
+the kn fixation caused by the non-similar locations to participate 
+in the estimation, which is because if the number of the 
+estimated locations is fixed, and if not enough number of the 
+similar locations join in the calculation, there will result in a 
+larger estimation error. Secondly, the purpose of the comparison 
+between kn and Q is to prevent the Q value to become too large 
+which will involve too much locations to participate in the 
+estimate. If the Q value is too large, then the estimated location 
+will not similar. Thus, we use the threshold of kn to limit the 
+number of participants in the estimates. 
+The second point of the improvement is that we try to 
+increase the weight of the similar location fingerprints, that is, 
+the estimated location is more close to the location of the 
+fingerprint, which is more accurate. The weighted NNSS-AVG 
+algorithm also uses this method. 
+III. SYSTEM SOLUTION 
+A. Clustering Analysis 
+In the location fingerprint method, we need to search and 
+compare for the location fingerprints data among the whole 
+fingerprint database, which is a large and complex computation. 
+In order to reduce the computation complexity, we introduce a 
+clustering method in the location fingerprint method. 
+Clustering analysis is a multivariate statistical method used 
+in pattern recognition, machine learning, data mining, image 
+processing, etc. Clustering analysis can be divided into 
+hierarchical clustering and non-hierarchical clustering. For 
+hierarchical clustering, the key is to define the class distance. 
+For non-hierarchical clustering, which is referred to a kind of 
+clustering methods, the common feature is to give an immature 
+initial classification, and revise it repeatedly according to some 
+certain rules until the classification become reasonable. 
+Compared with hierarchical clustering, the non-hierarchical 
+clustering method has better classification accuracy, and 
+occupies less system resources. In this paper, we choose the 
+classical K-means method in non-hierarchical clustering 
+method. 
+The clustering analysis steps are shown as follows: 
+(1) Set km which is the number of clusters; 
+(2) Random category the fingerprint data to be measured and 
+the location fingerprint data in the database into km classes. 
+(3) Calculate the center of gravity as a cluster center; 
+(4) Calculate the distance between each location fingerprint 
+data and the center of each cluster, and place the location 
+fingerprint data into a class that is represented by the nearest 
+cluster center. Recalculate the center of gravity as a new cluster 
+center; 
+(5) Repeat step (4) until the resulting classification is no 
+longer changed. 
+B. 3D NNSS-AP-AVG Positioning Algorithm 
+In order to realize the 3D positioning system based on 
+location fingerprint, we choose a three-dimensional space of 12 
+meters long, 1.6 meters wide and 2 meters high as an experiment 
+environment, as shown in Fig. 2. 
+We choose the reference points in every 0.8 meters, which is 
+highlightened in the color of blue. And the height of the 
+reference points was selected as 0.4 meters, 1.2 meters, 2 meters, 
+respectively. We use our own automatic acquisition application 
+named CUCFC instead of inSSIDer to collect the location 
+fingerprint data. We use CUCFC to collect 30 location 
+fingerprint data at each reference point. We set up the position 
+to be measured at each reference point of 1.2 meters high, and a 
+total of 28 to be measured with the red color. We also have used 
+
+ 1126 
+CUCFC to collect the 30 position and record the position 
+information. 
+We use NNSS-AP-AVG to implement the MATLAB 
+algorithm. By adjusting the parameters of kn and Q, the 3D 
+positioning accuracy can be achieved by NNSS-AP-AVG 
+algorithm. 
+In detail, we calculate the Euclidean distance between the 
+position of 28 points to be measured and the position of the 135 
+reference points. Then we get the estimated position according 
+to the NNSS-AP-AVG algorithm, and get the 3D coordinates. 
+The Euclidean distance are calculated between the coordinates 
+of 28 points to be measured and their real coordinates, then the 
+estimation errors are calculated and the CDF and ARMSE are 
+calculated. 
+First, we do the simulation with different kn values when M 
+value is fixed. When M value is fixed at 3.75, and the kn is take 
+as 15, 30, 45, 90, 135, respectively, the results are shown in 
+Fig.3. When kn equals to 45, as shown in the figure, the CDF 
+reaches the highest value, which means the highest positioning 
+accuracy. When kn equals to 90 or 135, the CDF is higher within 
+a certain range of 0.5 meter. This is because when kn takes a 
+larger value, according to the NNSS-AP-AVG algorithm, M 
+value will take the main role, and will let all the position with 
+similar conditions to involved in the estimation, which may 
+result in a high accuracy in a certain range. But in a larger range 
+of estimation, we need to determine the threshold of kn by 
+simulation. In this paper, kn equals to 45 in the three-
+dimensional experimental environment. 
+Figure 3. The results of NNSS-AP-AVG algorithm with different kn 
+Then we determine the threshold of kn equals to 45, and do 
+the simulation with different M to test if the positioning 
+accuracy changes. The M values are taken as 1, 1.5, 2.25, 3, 
+3.75, 4.5, respectively, and the results are shown in Fig.4. When 
+M equals to 3.75, the CDF reaches the highest value, which 
+means the highest accuracy can be reached at of CDF equals to 
+96.43% within 3 meters. In the case of M equals to 1, the NNSS-
+AP-AVG algorithm becomes the NNSS algorithm, and the 
+positioning accuracy is significantly lower than the NNSS-AP-
+AVG algorithm. When M is less than 3.75, the CDF is increased 
+when M value is increasing. This indicates that more positions 
+involve in the estimation can improve the position accuracy 
+when M value is less than 3.75. Therefore, in this paper, M 
+value is taken as 3.75 in the three-dimensional space 
+experiment environment. 
+Figure 4. The results of NNSS-AP-AVG algorithm with different M 
+In the research of NNSS-AP-AVG algorithm, we also do 
+the simulation with clustering analysis. We still use the K-
+means algorithm to replace the location fingerprint database of 
+135 location fingerprint data with cluster. We take kn equals to 
+45 and M equals to 3.75, respectively, the km is taken from 1 to 
+6, and the simulation results are shown in Fig.5. When km 
+equals to 1 with no clustering, the CDF reaches the highest, 
+which means the positioning accuracy is the highest. When km 
+does not equal to 1, the highest CDF can be obtained when km 
+equals to 3, which means the highest positioning accuracy with 
+clustering. 
+Figure 5. The results of 3D positioning algorithm with different km 
+0.511.522.533.5400.10.20.30.40.50.60.70.80.91Postioning error(m)
+Cumulative error distribution 
+kn=15kn=30kn=45kn=90kn=1350.511.522.533.5400.10.20.30.40.50.60.70.80.91Postioning error(m)
+Cumulative error distribution 
+M=1M=1.5M=2.25M=3M=3.75M=4.50.511.522.533.5400.10.20.30.40.50.60.70.80.91Postioning error(m)
+Cumulative error distribution 
+km=1km=2km=3km=4km=5km=6
+
+ 1127 
+The simulation results show that the clustering analysis can 
+improve the accuracy of the location fingerprint estimation, 
+because the clustering analysis can reduce the calculation time 
+of the Euclidean distance by replace the location fingerprint 
+database with a cluster. Therefore, in the 3D experimental 
+environment, we use NNSS-AP-AVG algorithm with 
+clustering analysis. Its positioning accuracy is significant when 
+CDF is 96.43% within 3 meters¡¦ range. 
+IV. CONCLUSIONS 
+This paper introduces a 3D indoor positioning system using 
+location fingerprint method. Especially, in order to achieve the 
+highest positioning accuracy, we use a novel-positioning 
+algorithm named NNSS-AP-AVG based on NNSS-AVG 
+(Nearest Neighbor(s) in Signal Space-Average) in the location 
+fingerprint method. Moreover, in order to improve the 
+positioning accuracy, we introduce the clustering analysis to 
+reduce the calculation time of the Euclidean distance by replace 
+the location fingerprint database with a cluster. In addition, to 
+solve the hard work of offline phase, a fingerprint collecting 
+system is implemented. The simulation results demonstrated 
+that the 3D indoor positioning system can achieve higher 
+positioning accuracy when we use NNSS-AP-AVG algorithm 
+with clustering analysis. And its positioning accuracy can reach 
+when CDF is 96.43% within 3 meters¡¦ range. 
+REFERENCES 
+[1] Schilit B N, Adams N I, Want R. Context-Aware Computing 
+Applications[C].Mobile Computing Systems and Applications, Santa 
+Cruz: IEEE, 1994: 85-90. 
+[2] Reichenbacher T. Mobile Cartography-Adaptive Visualisation of 
+Geographic Information on Mobile Devices[D]. Germany: TUM PhD 
+Thesis, 2004: 36-42. 
+[3] A.Goldsmith.Wireless communications[M].Cambridge University Press, 
+2005. 
+[4] Ji Y, Biaz S, Pandey S, et al. ARIADNE: a Dynamic Indoor Signal Map 
+Construction and Localization System[C]. In Proceedings of the 4th 
+International Conference on Mobile systems, Applications and Services, 
+Uppsala, Sweden: 2006, 151 ¡V 164. 
+[5] NI W, WANG Z-x.Indoor Location Algorithm Based on the Measurement 
+of the Received Signal Strength[C]. Frontiers of Electrical and Electronic 
+Engineering in China, 2006, 1(1), 48-52. 
+[6] Chintalapudi K, Padmanabha Iyer A, Padmanabhan V N. Indoor 
+localization without the pain[C].Proceedings of the sixteenth annual 
+international conference on Mobile computing and networking. ACM, 
+2010: 173-184. 
+[7] Bahl P, Padmanabhan V N. RADAR: An in-building RF-based User 
+Location and Tracking System[C]. IEEE Infocom 2000. Tel Aviv, 
+2000:775-784. 
+[8] Bahl P, Balachandran A, Padmanabhan V N. Enhancements to the 
+RADAR User Location and Tracking System[R].Technical Report MSR-
+TR-00-12, Microsoft Research. 2000. 
+[9] Youssef M, Agrawala A, Shankar A U. WLAN Location Determination 
+via Clustering and 
+[10] Probability Distributions[C]. In:IEEE International Conference on 
+Pervasive Computing and Communications(PerCom) 2003, Fort Worth, 
+Texas, 2003 
+[11] Youssef M, Agrawala A. The Horus WLAN location determination 
+system[C]. Proceedings of the 3rd international conference on Mobile 
+systems, applications, and services. ACM, 2005: 205-218. 
+[12] A.Rai, K. K. Chintalapudi, V. N. Padmanabhan, et al.Zee: Zero-Effort 
+Crowdsoucing for Indoor Localization[C]. Proceedings of ACM 
+Mobicom,2012: 269-280. 
+The simulation results show that the clustering analysis can 
+improve the accuracy of the location fingerprint estimation, 
+because the clustering analysis can reduce the calculation time 
+of the Euclidean distance by replace the location fingerprint 
+database with a cluster. Therefore, in the 3D experimental 
+environment, we use NNSS-AP-AVG algorithm with 
+clustering analysis. Its positioning accuracy is significant when 
+CDF is 96.43% within 3 meters¡¦ range. 
+IV. CONCLUSIONS 
+This paper introduces a 3D indoor positioning system using 
+location fingerprint method. Especially, in order to achieve the 
+highest positioning accuracy, we use a novel-positioning 
+algorithm named NNSS-AP-AVG based on NNSS-AVG 
+(Nearest Neighbor(s) in Signal Space-Average) in the location 
+fingerprint method. Moreover, in order to improve the 
+positioning accuracy, we introduce the clustering analysis to 
+reduce the calculation time of the Euclidean distance by replace 
+the location fingerprint database with a cluster. In addition, to 
+solve the hard work of offline phase, a fingerprint collecting 
+system is implemented. The simulation results demonstrated 
+that the 3D indoor positioning system can achieve higher 
+positioning accuracy when we use NNSS-AP-AVG algorithm 
+with clustering analysis. And its positioning accuracy can reach 
+when CDF is 96.43% within 3 meters¡¦ range. 
 
 
-Figure 5 shows the test dataset, a new dataset contains all the 
-columns in training dataset except one column, i.e.; mark for 
-one test (gp4) in training dataset. The gp4 for test dataset is 
-predicted from the statistical relationship found in training 
-dataset. 
-
-
-Figure 6 shows the final predicted result after applying test 
-dataset in predictive model developed using training dataset. 
-
-V. CONCLUSION 
-In this paper we have presented a new approach 
-called Learning Analytics and Predictive analytics to identify 
-academically at-risk students and to predict students learning 
-outcomes in educational institutions. The predictive models 
-will help the instructor to understand how well or how poorly 
-the students in his/her class will perform, and hence the 
-instructor can choose proper pedagogical and instructional 
-interventions to enhance student learning outcomes. It also 
-helps instructors to predict about students success and failure 
-in examination and also they can give proper advices to 
-prevent failure in the examinations. Information¡¦s like 
-Attendance, Class test, Seminar and Assignment marks were 
-collected from the student¡¦s previous database, to predict the 
-
-performance at the end of the semester. This study will help to 
-the students and the teachers to improve the division of the 
-student. This study will also work to identify those students 
-which needed special attention to reduce fail ration and taking 
-appropriate action for the next semester examination. 
