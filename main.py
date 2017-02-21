@@ -1,21 +1,19 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import os
-import codecs
-import sys
 import time
-from subprocess import STDOUT, check_output
+
 filename = "a.txt"
 
 block_size = 5
-readfile = open(filename, 'r')
-writefile = open("output.txt", 'w')
+readfile = open(filename, 'r', encoding='utf-8-sig')
+writefile = open("output.txt", 'w', encoding='utf-8-sig')
 paragraph_eng_list = ['']
 paragraph_ch_list = ['']
 driver = webdriver.PhantomJS(executable_path=os.path.abspath(r'./phantomjs-2.1.1-windows/bin/phantomjs'))  # 開啟 PhantomJs 瀏覽器
 driver.set_page_load_timeout(30)
-#test
 
+### translate2ch ###
 def translate2ch(paragraph_eng):  # 將段落翻譯成中文
     print("input: " + paragraph_eng)
     paragraph_ch = ""
@@ -30,22 +28,23 @@ def translate2ch(paragraph_eng):  # 將段落翻譯成中文
         else:
             paragraph_ch += drink.get_text()
     return paragraph_ch
+### translate2ch end ###
 
 #### main ####
 with readfile as file:
     lines = (line.rstrip('\r\n') for line in file)  # lines 是底下 for迴圈 的 generator, string.strip() 是一個刪減字串的方法
     i = 0
-    j = 0
     for line in lines:
+        line = line.replace('/', '\\')
+        line += " "  # 每一行補上一個空白
         paragraph_eng_list[i] += line
-        j += 1
         if line == "" and paragraph_eng_list[i] != "":  # 分段，丟到 google翻譯
             paragraph_eng_list.append('')
             translate2ch(paragraph_eng_list[i])
-            #writefile.write(translate2ch(paragraph_eng_list[i]))
+            writefile.write(translate2ch(paragraph_eng_list[i]))
             i += 1
     translate2ch(paragraph_eng_list[i])
-    #writefile.write(translate2ch(paragraph_eng_list[i]))  # 最後一段的翻譯
+    writefile.write(translate2ch(paragraph_eng_list[i]))  # 最後一段的翻譯
 
 driver.close()  # 關閉瀏覽器
 readfile.close()
