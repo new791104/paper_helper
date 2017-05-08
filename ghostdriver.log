@@ -1,15 +1,5 @@
-<<<<<<< HEAD
-=======
-[INFO  - 2017-02-16T20:10:09.592Z] GhostDriver - Main - running on port 3230
-[INFO  - 2017-02-16T20:10:10.743Z] Session [eb538030-f483-11e6-b54d-d710f662c9d9] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
-[INFO  - 2017-02-16T20:10:10.743Z] Session [eb538030-f483-11e6-b54d-d710f662c9d9] - page.customHeaders:  - {}
-[INFO  - 2017-02-16T20:10:10.743Z] Session [eb538030-f483-11e6-b54d-d710f662c9d9] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
-[INFO  - 2017-02-16T20:10:10.743Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: eb538030-f483-11e6-b54d-d710f662c9d9
-[ERROR - 2017-02-16T20:10:12.017Z] Session [eb538030-f483-11e6-b54d-d710f662c9d9] - page.onError - msg: TypeError: undefined is not an object (evaluating 'delete window.jstiming.cd[d]')
-
-  phantomjs://platform/console++.js:263 in error
-[ERROR - 2017-02-16T20:10:12.017Z] Session [eb538030-f483-11e6-b54d-d710f662c9d9] - page.onError - stack:
-  onerror (https://translate.google.com/translate/releases/twsfe_w_20170213_RC01/r/js/desktop_module_main.js:17)
-
-  phantomjs://platform/console++.js:263 in error
->>>>>>> origin/master
+[INFO  - 2017-05-08T10:43:57.990Z] GhostDriver - Main - running on port 65011
+[INFO  - 2017-05-08T10:43:59.049Z] Session [3e13f840-33db-11e7-baec-6dc079ce1cfe] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2017-05-08T10:43:59.049Z] Session [3e13f840-33db-11e7-baec-6dc079ce1cfe] - page.customHeaders:  - {}
+[INFO  - 2017-05-08T10:43:59.049Z] Session [3e13f840-33db-11e7-baec-6dc079ce1cfe] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2017-05-08T10:43:59.050Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 3e13f840-33db-11e7-baec-6dc079ce1cfe

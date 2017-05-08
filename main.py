@@ -1,3 +1,4 @@
+# coding = MS950
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import os
@@ -40,10 +41,10 @@ with readfile as file:
         paragraph_eng_list[i] += line
         if line == "" and paragraph_eng_list[i] != "":  # 分段，丟到 google翻譯
             paragraph_eng_list.append('')
-            translate2ch(paragraph_eng_list[i])
+            #translate2ch(paragraph_eng_list[i])
             writefile.write(translate2ch(paragraph_eng_list[i]))
             i += 1
-    translate2ch(paragraph_eng_list[i])
+    #translate2ch(paragraph_eng_list[i])
     writefile.write(translate2ch(paragraph_eng_list[i]))  # 最後一段的翻譯
 
 driver.close()  # 關閉瀏覽器
